@@ -1,0 +1,10 @@
+psycopg2==2.7.7
+click==7.0
+pandas==0.23.4
+mysql==0.0.2
+mysql-connector==2.1.6
+numpy==1.16.2
+plotly==3.7.1
+requests==2.21.0
+pyquibase==1.2
+six==1.11.0

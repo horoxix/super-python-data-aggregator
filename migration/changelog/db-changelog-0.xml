@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db-changelog-0"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                            http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="hjohnson" id="Create Call Statistics Table">
+        <createTable tableName="call_statistics">
+            <column autoIncrement="true" name="call_statistics_key" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="label" type="TEXT"/>
+            <column name="samples" type="INT"/>
+            <column name="average_response_time" type="INT"/>
+            <column name="ninety_percent" type="INT"/>
+            <column name="ninety_five_percent" type="INT"/>
+            <column name="ninety_nine_percent" type="INT"/>
+            <column name="minimum_response_time" type="INT"/>
+            <column name="maximum_response_time" type="INT"/>
+            <column name="average_latency" type="FLOAT(12)"/>
+            <column name="geo_mean_response_time" type="SMALLINT"/>
+            <column name="standard_deviation" type="SMALLINT"/>
+            <column name="duration_ms" type="INT"/>
+            <column name="average_bytes" type="FLOAT(12)"/>
+            <column name="average_throughput" type="FLOAT(12)"/>
+            <column name="median_response_time" type="INT"/>
+            <column name="error_count" type="INT"/>
+            <column name="error_rate" type="FLOAT(12)"/>
+            <column name="has_passed_thresholds" type="BIT(1)"/>
+            <column name="suite_run_history_id" type="CHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="hjohnson" id="Create Suite Run History Table">
+        <createTable tableName="suite_run_history">
+            <column autoIncrement="true" name="suite_run_history_key" type="INT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="suite_run_history_id" type="CHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="run_date" type="timestamp"/>
+            <column name="average_response_time" type="INT"/>
+            <column name="total_samples" type="INT"/>
+            <column name="error_rate" type="FLOAT(12)"/>
+            <column name="error_count" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="hjohnson" id="Suite Run History Foreign Key">
+        <createIndex indexName="suite_run_history_id" tableName="call_statistics">
+            <column name="suite_run_history_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="hjohnson" id="FK Restraint">
+        <addForeignKeyConstraint baseColumnNames="suite_run_history_id" baseTableName="call_statistics" constraintName="call_statistics_ibfk_1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="suite_run_history_id" referencedTableName="suite_run_history" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

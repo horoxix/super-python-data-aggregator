@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="db-changelog-1"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+ 	<changeSet author="hjohnson" id="Create High Error Rate Table">
+		<createTable tableName="high_error_rate">
+		    <column name="id" type="INT" autoIncrement="true">
+			    <constraints nullable="false" primaryKey="true" />
+		    </column>
+		    <column name="label" type="VARCHAR(25)">
+			    <constraints nullable="false" />
+		    </column>
+			<column name="error_rate" type="int">
+		    </column>
+			<column name="suite_run_history_id" type="VARCHAR(25)">
+			    <constraints nullable="false" foreignKeyName="fk_suite_history_id" references="suite_run_history(suite_run_history_id)"/>
+		    </column>
+		</createTable>
+ 	</changeSet>
+
+</databaseChangeLog>

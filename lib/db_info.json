@@ -1,0 +1,23 @@
+{
+	"MySQL": {
+		"connection_info": {
+			"database": "spyda",
+			"host": "127.0.0.1",
+			"port": 3306,
+			"user": "spyda",
+			"password": "spydapassword",
+			"pool_size": 5,
+			"autocommit": "True"
+		},
+		"config": {
+			"changelog": "changelog-master.xml"
+		}
+	},
+	"PostgreSQL": {
+		"database": "spyda",
+		"host": "localhost",
+		"user": "postgres",
+		"password": "spyda"
+	}
+}
+
