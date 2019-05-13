@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='spyda',
-    version='1.0',
+    version='1.2',
     description='Super Python Data Aggregator',
     author="Holden Johnson",
     author_email="horoxix@gmail.com",
@@ -13,9 +13,11 @@ setup(
         'Click',
         'pandas',
         'mysql-connector',
+        'mysql',
         'psycopg2',
         'plotly',
-        'pyquibase'
+        'pyquibase',
+        'requests'
     ],
     entry_points='''
     [console_scripts]

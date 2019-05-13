@@ -1,5 +1,5 @@
-from mysql.connector import Error
 from lib.helper import get_db_info
+import mysql.connector
 
 
 # inserts results into db table based on table, database type, and values
@@ -24,7 +24,7 @@ def insert_results_into_table(table, database, *args):
         connection.commit()
         print("Record inserted successfully into the " + table.table_name + " table")
 
-    except Error as error:
+    except Exception as error:
         connection.rollback()
         print("Failed to insert into " + table.table_name + " table {}".format(error))
 

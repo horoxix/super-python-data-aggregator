@@ -24,6 +24,7 @@ def create_tables():
            CREATE TABLE `call_statistics` (
                 `call_statistics_key` INT(11) NOT NULL AUTO_INCREMENT,
                 `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                `label_id` TEXT NULL,
                 `label` TEXT NULL,
                 `samples` INT(11) NULL DEFAULT NULL,
                 `average_response_time` INT(11) NULL DEFAULT NULL,

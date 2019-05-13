@@ -15,6 +15,7 @@
             <column defaultValueComputed="CURRENT_TIMESTAMP" name="date" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+            <column name="label_id" type="TEXT"/>
             <column name="label" type="TEXT"/>
             <column name="samples" type="INT"/>
             <column name="average_response_time" type="INT"/>

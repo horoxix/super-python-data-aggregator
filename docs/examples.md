@@ -1,7 +1,8 @@
 ### **examples**
 
  **desire** : insert jmeter testing results into the database
-* **command** : `spyda insert data.csv MySQL --table=call_statistics`
+* **command** : `spyda insert data.csv --data_type='csv'`
+* **command** : `spyda insert 19395237 --data_type='online'`
 
  **desire** : display latest call statistic error data
 * **command** : `spyda display call_statistics`

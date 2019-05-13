@@ -6,9 +6,10 @@
   
   
   * **insert** (_Inserts csv data into the database_)
-    * csv (_required_) `[path to csv file]`
-    * db_type `['MySQL', PostgreSQL]` _default = MySQL_
+    * data_loc (_required_) `[path to csv file or Session ID]`
+    * --data_type `['online', 'csv']` _default = online_
     * --table `['call_statistics']` _default = 'call_statistics'_
+    * --db_type `['MySQL', PostgreSQL]` _default = MySQL_
   
   
   * **setup** (_Sets up database for use with tool_)
@@ -17,7 +18,6 @@
   
   
   * **config** (_displays tool configuration_)
-  
   
   * **--help** (_displays help_)
   

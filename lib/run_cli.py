@@ -1,5 +1,6 @@
 import click
 from lib.insert import import_from_csv_file as pcsv
+from lib.insert import import_from_blazemeter as blaze
 from lib.helper import get_db_type
 from migration import mysql_run_changelog, psql_run_changelog
 from lib.setup import mysql_create_spyda_database, psql_create_spyda_database
@@ -25,12 +26,20 @@ def display(display_table, db_type):
 
 
 @cli.command()
-@click.argument('csv', required=1)
-@click.argument('db_type', required=1, default=get_db_type.MySQL)
+@click.argument('data_loc', default='none')
+@click.option('--data_type', default='online', help='what type of data you are inserting.')
 @click.option('--table', default='call_statistics', help='table to insert information into.')
-def insert(csv, db_type, table):
-    click.echo('Inserting data...')
-    pcsv.insert_data_from_csv(csv, db_type, table)
+@click.option('--db_type', default=get_db_type.MySQL, help='type of Database you are inserting into.')
+def insert(data_loc, data_type, table, db_type):
+    click.echo('Attempting to insert data...')
+    if data_type == 'online':
+        click.echo('Session ID : ' + str(data_loc))
+        click.echo('Inserting data...')
+        blaze.insert_results_from_blazemeter_v4(data_loc, db_type, table)
+    elif data_type == 'csv':
+        click.echo('CSV File : ' + str(data_loc))
+        click.echo('Inserting data...')
+        pcsv.insert_data_from_csv(data_loc, db_type, table)
     click.echo('Data inserted!')
 
 
@@ -68,9 +77,6 @@ def setup(db_type, new, clear):
 @cli.command()
 def config():
     click.echo("config")
-
-
-
 
 
 if __name__ == '__main__':

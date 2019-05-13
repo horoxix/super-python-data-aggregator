@@ -8,3 +8,4 @@ plotly==3.7.1
 requests==2.21.0
 pyquibase==1.2
 six==1.11.0
+requests==2.21.0
